@@ -1,5 +1,5 @@
 {
-    "name": "Protector basic java build/deploy workflow template",
+    "name": "Protector basic Java build/deploy ",
     "description": "Builds a gradle project, builds the container, deploys the container to swarm.",
     "iconName": "example-icon",
     "categories": [
