@@ -1,3 +1,4 @@
+#Fix 
 name: Build and deploy
 
 on:
@@ -18,31 +19,16 @@ jobs:
       with:
         java-version: '16'
         distribution: 'adopt'
-    - name: Cache gradle dependencies
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~./gradle/caches
-          ~./gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
+        cache: 'gradle'
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Cleanup Gradle Cache
-      # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
-      # Restoring these files from a GitHub Actions cache might cause problems for future builds.
-      run: |
-        rm -f ~/.gradle/caches/modules-2/modules-2.lock
-        rm -f ~/.gradle/caches/modules-2/gc.properties
-
     - name: Store build artifact
       uses: actions/upload-artifact@v2
       with:
         name: onejar
-        path: build/libs/demo-1.jar
+        path: build/libs/*.jar
     - name: Login to ghcr
       uses: docker/login-action@v1
       with:
