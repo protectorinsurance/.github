@@ -1,0 +1,4 @@
+{
+    "name": "Deploy to test",
+    "description": "Manual deploy of an image to test swarm"
+}

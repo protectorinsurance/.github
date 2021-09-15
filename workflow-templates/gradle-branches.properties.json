@@ -1,0 +1,11 @@
+{
+    "name": "Gradle branches build",
+    "description": "Builds non-main branches with gradle",
+    "categories": [
+        "Java"
+    ],
+    "filePatterns": [
+        "^build.gradle$",
+        "^Dockerfile$"
+    ]
+}
