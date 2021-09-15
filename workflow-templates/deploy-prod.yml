@@ -1,0 +1,39 @@
+name: Deploy to prod
+
+on:
+  schedule:
+    # Set desired time of deploy (UTC)
+    # Minute Hour DayOfMonth Month DayOfWeek
+    - cron: '34 3 * * 1-5'
+
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Image version
+        required: true
+        default: latest
+
+env:
+  # Set deploy information for the service
+  image_name: #<docker image name>
+  service_name: #<docker service name>
+  version: ${{ github.event.inputs.version || 'latest' }}
+
+jobs:
+  deploy_prod:
+    name: Deploy to prod
+    runs-on: self-hosted
+    steps:
+      - name: Deploy to prod
+        uses: protectorinsurance/swarm-ssh-deployer@v1
+        with:
+          service-name: ${{ env.service_name }}
+          image: ghcr.io/protectorinsurance/${{ env.image_name }}
+          image-tag: ${{ env.version }}
+          private-key: ${{ secrets.DEPLOY_PRIVATE_KEY_FILENAME }}
+          # Change this to secrets.DEPLOY_USERNAME when production swarm has been updated
+          username: ${{ secrets.LEGACY_DEPLOY_USERNAME }}
+          hostname: ${{ secrets.PROD_DEPLOY_HOSTNAME }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          ghcr-username: ${{ github.repository_owner }}
+          ghcr-token: ${{ secrets.GITHUB_TOKEN }}

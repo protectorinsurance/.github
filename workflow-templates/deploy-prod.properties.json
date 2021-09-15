@@ -1,0 +1,4 @@
+{
+    "name": "Deploy to prod",
+    "description": "Scheduled and manual deploy of an image to prod swarm"
+}

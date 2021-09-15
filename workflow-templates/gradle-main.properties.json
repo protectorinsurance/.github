@@ -1,0 +1,11 @@
+{
+    "name": "Gradle main build and deploy",
+    "description": "Builds main branch with gradle, creates a docker image and deploys it to test swarm",
+    "categories": [
+        "Java"
+    ],
+    "filePatterns": [
+        "^build.gradle$",
+        "^Dockerfile$"
+    ]
+}
