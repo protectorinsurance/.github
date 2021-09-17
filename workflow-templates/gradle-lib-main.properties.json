@@ -1,0 +1,10 @@
+{
+    "name": "Gradle library main build and publish",
+    "description": "Builds library from main branch with gradle and publishes it to GitHub packages",
+    "categories": [
+        "Java"
+    ],
+    "filePatterns": [
+        "^build.gradle$"
+    ]
+}
