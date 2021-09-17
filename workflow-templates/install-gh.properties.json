@@ -1,0 +1,4 @@
+{
+    "name": "Install github cli",
+    "description": "Installs gh (gitub cli) to a self-hosted runner"
+}

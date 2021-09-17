@@ -1,0 +1,20 @@
+name: gh cli
+on:
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: self-hosted
+    steps:
+      - name: install gh
+        run: |
+         curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --batch --yes --no-tty --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
+         echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+         sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key C99B11DEB97541F0
+         sudo apt update
+         sudo apt install -y gh
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: gh --version
+      
+
