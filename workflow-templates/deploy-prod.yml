@@ -35,5 +35,5 @@ jobs:
           username: ${{ secrets.LEGACY_DEPLOY_USERNAME }}
           hostname: ${{ secrets.PROD_DEPLOY_HOSTNAME }}
           port: ${{ secrets.DEPLOY_PORT }}
-          ghcr-username: ${{ github.repository_owner }}
-          ghcr-token: ${{ secrets.GITHUB_TOKEN }}
+          ghcr-username: ${{ secrets.PROTECTOR_GITHUB_MACHINE_USER }}
+          ghcr-token: ${{ secrets.PROTECTOR_GITHUB_MACHINE_TOKEN }}
