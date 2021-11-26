@@ -1,0 +1,4 @@
+{
+  "name": "Automatically merges staging to main",
+  "description": "Scheduled job that automatically merges changes from staging to main branch"
+}

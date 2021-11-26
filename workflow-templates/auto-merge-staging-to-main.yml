@@ -1,0 +1,21 @@
+name: Merge staging into main
+on:
+  schedule:
+    - cron: '0 8 * * 2,4'
+jobs:
+  build-and-test:
+    jobs:
+      - name: Build gradle java
+        runs-on: ubuntu-latest
+        steps:
+          # TODO: ADD BUILD AND TEST STEPS
+
+  merge-to-main:
+    name: Merge staging into main
+    needs: build-and-test
+    uses: protectorinsurance/workflows/.github/workflows/merge-staging-to-main.yml@main
+    with:
+      # TODO: INSERT FALLBACK REVIEWERS IN CASE PR CANNOT BE MERGED
+      reviewers: "ADD REVIEWER"
+    secrets:
+      token: ${{ secrets.MERGE_AUTOMATION }}
