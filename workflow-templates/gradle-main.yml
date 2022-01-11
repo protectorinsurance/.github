@@ -83,3 +83,17 @@ jobs:
           port: ${{ secrets.DEPLOY_PORT }}
           ghcr-username: ${{ secrets.PROTECTOR_GITHUB_MACHINE_USER }}
           ghcr-token: ${{ secrets.PROTECTOR_GITHUB_MACHINE_TOKEN }}
+  if_failure:
+    name: Teams notification on failure(s)
+    runs-on: ubuntu-latest
+    if: ${{ failure() }}
+    needs: [ build, docker, deploy_test ]
+    steps:
+      - uses: actions/checkout@master
+      - name: Microsoft Teams Notification
+        uses: skitionek/notify-microsoft-teams@master
+        with:
+          webhook_url: ${{ secrets.REPLACE_WITH_TEAMS_WEBHOOK }}
+          needs: ${{ toJson(needs) }}
+          job: ${{ toJson(job) }}
+          steps: ${{ toJson(steps) }}
