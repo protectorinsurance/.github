@@ -89,10 +89,11 @@ jobs:
     if: ${{ failure() }}
     needs: [ build, docker, deploy_test ]
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - name: Microsoft Teams Notification
         uses: skitionek/notify-microsoft-teams@master
         with:
+          # Set the correct webhook secret for the desired Teams channel
           webhook_url: ${{ secrets.REPLACE_WITH_TEAMS_WEBHOOK }}
           needs: ${{ toJson(needs) }}
           job: ${{ toJson(job) }}
