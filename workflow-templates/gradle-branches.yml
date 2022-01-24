@@ -17,8 +17,8 @@ jobs:
       - uses: actions/setup-java@v2
         with:
           # Set correct Java version
-          java-version: '16'
-          distribution: 'adopt'
+          java-version: '17'
+          distribution: 'temurin'
           cache: 'gradle'
       - name: Build
         # Set correct build command
