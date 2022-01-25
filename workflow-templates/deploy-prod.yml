@@ -22,7 +22,7 @@ env:
 jobs:
   deploy_prod:
     name: Deploy to prod
-    runs-on: self-hosted
+    runs-on: [self-hosted, prod]
     steps:
       - name: Deploy to prod
         uses: protectorinsurance/swarm-ssh-deployer@v1
