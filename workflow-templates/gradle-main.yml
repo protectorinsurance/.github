@@ -68,7 +68,7 @@ jobs:
             ghcr.io/protectorinsurance/${{ env.image_name }}:latest
   deploy_test:
     name: Deploy to test
-    runs-on: self-hosted
+    runs-on: [self-hosted, test]
     needs: docker
     steps:
       - name: Deploy to test
