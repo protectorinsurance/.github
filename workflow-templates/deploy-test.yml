@@ -17,7 +17,7 @@ env:
 jobs:
   deploy_test:
     name: Deploy to test
-    runs-on: self-hosted
+    runs-on: [self-hosted, test]
     steps:
       - name: Deploy to test
         uses: protectorinsurance/swarm-ssh-deployer@v1
